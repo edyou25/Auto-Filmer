@@ -33,11 +33,9 @@ RUN git clone git@github.com:edyou25/Auto-Filmer.git
 WORKDIR $CATKIN_WS
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin_make"
 
-# 设置环境
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN echo "source $CATKIN_WS/devel/setup.bash" >> ~/.bashrc
 
-# 设置默认工作目录
 WORKDIR $CATKIN_WS
 
 CMD ["/bin/bash"]
