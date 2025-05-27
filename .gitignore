@@ -1,0 +1,94 @@
+# === ROS build and log files ===
+build/
+devel/
+install/
+log/
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.~ 
+
+# === ROS-specific files ===
+*.bag
+*.db
+*.launch.pyc
+*.egg-info/
+
+# === ROS dependencies ===
+*.msg
+*.srv
+*.action
+CMakeLists.txt.user
+*.autosave
+
+# === Python virtual environment ===
+venv/
+env/
+.env/
+
+# === catkin/cmake generated ===
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# === CLion/VSCode/IDE stuff ===
+.idea/
+.vscode/
+*.code-workspace
+
+# === JetBrains IDEs ===
+*.iml
+*.iws
+out/
+
+# === ROS workspace overlay setup ===
+setup.bash
+setup.sh
+setup.zsh
+local_setup.*
+
+# === ROS test logs ===
+test_results/
+test_*.xml
+
+# === ROS 2 support (optional) ===
+colcon*
+build_isolated/
+install_isolated/
+
+# === ROS GUI output and images ===
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.mp4
+
+# === ROS visualization configs ===
+*.rviz
+*.urdf
+*.xacro
+
+# === ROS-generated Python/C++ ===
+*.so
+*.dll
+*.dylib
+*.npy
+
+# === Misc binary blobs ===
+*.out
+*.bin
+
+# === Docker and Conda ===
+*.envrc
+.DS_Store
+*.tar
+*.tar.gz
+*.log
+
+# === Auto-Filmer specific (optional: e.g., GUI output folders) ===
+src/gui/bin/__pycache__/
+src/gui/bin/*.log
+src/gui/output/
