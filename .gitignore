@@ -35,7 +35,6 @@ Makefile
 
 # === CLion/VSCode/IDE stuff ===
 .idea/
-.vscode/
 *.code-workspace
 
 # === JetBrains IDEs ===

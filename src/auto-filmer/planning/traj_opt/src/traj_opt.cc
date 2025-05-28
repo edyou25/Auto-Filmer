@@ -551,8 +551,8 @@ int TrajOpt::optimize(const double& delta) {
   auto ret = lbfgs::lbfgs_optimize(dim_t_ + dim_p_ + dim_psi_ + dim_theta_ + 1, x_, &minObjective,
                                    &objectiveFunc, nullptr,
                                    &earlyExit, this, &lbfgs_params);
-  std::cout << "\033[32m"
-            << "ret: " << ret << "\033[0m" << std::endl;
+  // std::cout << "\033[32m"
+  //           << "ret: " << ret << "\033[0m" << std::endl;
   ros::Time t2 = ros::Time::now();
   double opt_t = (t2- t1).toSec() * 1e3;
   dbg_pub_.publish(dbg_msg);

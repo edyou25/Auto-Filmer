@@ -13,7 +13,7 @@ if(ENABLE_CUDA)
   SET(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -use_fast_math)
   set(CUDA_NVCC_FLAGS 
       # set this according to your cuda version
-      -gencode=arch=compute_80,code=sm_80 ;
+      -gencode=arch=compute_90,code=compute_90;
   ) 
 
   SET(CUDA_PROPAGATE_HOST_FLAGS OFF)

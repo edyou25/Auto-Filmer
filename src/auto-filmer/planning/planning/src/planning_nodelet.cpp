@@ -225,7 +225,7 @@ class Nodelet : public nodelet::Nodelet {
                               odom_msg.pose.pose.orientation.y,
                               odom_msg.pose.pose.orientation.z);
     if (!triger_received_) {
-      ROS_INFO("no trigger!");
+      ROS_DEBUG("no trigger!");
       return;
     }
     if (!target_received_) {
@@ -427,7 +427,7 @@ class Nodelet : public nodelet::Nodelet {
         pub_hover_p(odom_p, ros::Time::now());
         wait_hover_ = true;
       }
-      ROS_WARN("[planner] HOVERING...");
+      ROS_DEBUG("[planner] HOVERING...");
       replanStateMsg_.state = -1;
       replanState_pub_.publish(replanStateMsg_);
       return;
@@ -530,7 +530,7 @@ class Nodelet : public nodelet::Nodelet {
     if (valid) {
       replan_count = 25;  // 5
       force_hover_ = false;
-      ROS_WARN("[planner] REPLAN SUCCESS");
+      ROS_DEBUG("[planner] REPLAN SUCCESS");
       replanStateMsg_.state = 0;
       replanState_pub_.publish(replanStateMsg_);
       pub_traj(traj, replan_stamp);
@@ -742,7 +742,7 @@ class Nodelet : public nodelet::Nodelet {
     if(generate_new_traj_success)
     {  
       pub_traj(traj, replan_stamp);
-      ROS_WARN("[planner] REPLAN SUCCESS");
+      ROS_DEBUG("[planner] REPLAN SUCCESS");
       replan_received_ = false;
     }
     else
