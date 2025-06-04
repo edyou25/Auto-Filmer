@@ -2,8 +2,16 @@ cmake_minimum_required(VERSION 3.0.2)
 project(planning)
 
 add_compile_options(-std=c++14)
-set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
+option(DMODE "Build in Debug mode" ON)
+message(STATUS "Build in Debug mode: ${DMODE}")
+
+if(DMODE)
+  set(CMAKE_BUILD_TYPE Debug)
+  set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall")
+else()
+  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
+endif()
 
 find_package(Eigen3 REQUIRED)
 find_package(catkin REQUIRED COMPONENTS

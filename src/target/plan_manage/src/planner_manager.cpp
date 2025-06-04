@@ -286,10 +286,14 @@ namespace ego_planner
 
     if (pp_.use_distinctive_trajs)
     {
+      ROS_ERROR("pp_.use_distinctive_trajs=%d", pp_.use_distinctive_trajs);
       std::vector<ConstraintPoints> trajs = ploy_traj_opt_->distinctiveTrajs(segments);
-      cout << "\033[1;33m"
-           << "multi-trajs=" << trajs.size() << "\033[1;0m" << endl;
-
+      ROS_ERROR("Distinctive trajs size=%d", (int)trajs.size());
+      ROS_ERROR("segments size=%d", (int)segments.size());
+      for(const auto seg : segments)
+      {
+        ROS_ERROR("segment: %d, %d", seg.first, seg.second);
+      }
       poly_traj::Trajectory initTraj = initMJO.getTraj();
       int PN = initTraj.getPieceNum();
       Eigen::MatrixXd all_pos = initTraj.getPositions();
@@ -335,6 +339,7 @@ namespace ego_planner
     }
     else
     {
+      ROS_ERROR("pp_.use_distinctive_trajs=%d", pp_.use_distinctive_trajs);
       poly_traj::Trajectory initTraj = initMJO.getTraj();
       int PN = initTraj.getPieceNum();
       Eigen::MatrixXd all_pos = initTraj.getPositions();

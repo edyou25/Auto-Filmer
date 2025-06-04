@@ -1,11 +1,18 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(gimbal_simulator)
 
-set(CMAKE_BUILD_TYPE "Release")
-#set(CMAKE_CXX_FLAGS "-std=c++11")
+option(DMODE "Build in Debug mode" ON)
+message(STATUS "Build in Debug mode: ${DMODE}")
+
+if(DMODE)
+  set(CMAKE_BUILD_TYPE Debug)
+  set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall")
+else()
+  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
+endif()#set(CMAKE_CXX_FLAGS "-std=c++11")
 ADD_COMPILE_OPTIONS(-std=c++11 )
 ADD_COMPILE_OPTIONS(-std=c++14 )
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp

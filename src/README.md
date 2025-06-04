@@ -5,13 +5,13 @@
 src
 |-- auto-filmer
 |   |-- mapping
-|   |   |-- config 相机内外参，rviz参数
-|   |   |-- include 点云缓存数据结构
+|   |   |-- config # 相机内外参，rviz参数
+|   |   |-- include # 点云缓存数据结构
 |   |   |-- launch 启动nodelet manager，mapping和rviz
 |   |   `-- src 
-|   |       |-- mapping.cc mapping算法，读取depth/global_map
-|   |       |-- mapping_nodelet.cpp mapping节点管理
-|   |       |-- mapping_vis_node.cpp 独立节点，occ转pc
+|   |       |-- mapping.cc mapping # 算法，读取depth/global_map
+|   |       |-- mapping_nodelet.cpp # mapping节点管理
+|   |       |-- mapping_vis_node.cpp # 独立节点，occ转pc
 |   |       `-- visualize_history_path.cpp 
 |   `-- planning
 |       |-- planning
@@ -57,8 +57,8 @@ src
 |   |   |-- launch 
 |   |   |-- package.xml
 |   |   `-- src
-|   |       |-- ego_planner_node.cpp target ego-planner v2 节点
-|   |       |-- ego_replan_fsm.cpp ego-planner v2 状态机器
+|   |       |-- ego_planner_node.cpp # target ego-planner v2 节点
+|   |       |-- ego_replan_fsm.cpp ego-planner # v2 状态机器
 |   |       |-- planner_manager.cpp
 |   |       `-- traj_server.cpp
 |   |-- traj_opt_target

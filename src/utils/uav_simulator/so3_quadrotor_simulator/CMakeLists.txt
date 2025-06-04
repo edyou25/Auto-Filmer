@@ -3,9 +3,17 @@ project(so3_quadrotor_simulator)
 
 add_compile_options(-std=c++11)
 
-set(CMAKE_BUILD_TYPE "Release")
+option(DMODE "Build in Debug mode" ON)
+message(STATUS "Build in Debug mode: ${DMODE}")
+
+if(DMODE)
+  set(CMAKE_BUILD_TYPE Debug)
+  set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall")
+else()
+  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
+endif()
 set(CMAKE_CXX_FLAGS "-std=c++11")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
