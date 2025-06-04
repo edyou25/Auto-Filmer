@@ -22,11 +22,6 @@ log/
 CMakeLists.txt.user
 *.autosave
 
-# === Python virtual environment ===
-venv/
-env/
-.env/
-
 # === catkin/cmake generated ===
 CMakeCache.txt
 CMakeFiles/

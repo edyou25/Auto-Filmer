@@ -938,6 +938,11 @@ class Env {
         ray_buffer.clear();
         occ_index.clear();
         int ray_n = ceil((2 * angle_thresh + 2 * visibility_thresh) / d_theta);
+        if (ray_n <= 0) {
+          ROS_ERROR("[Env] Invalid ray_n: %d, angle_thresh: %f, visibility_thresh: %f, d_theta: %f", 
+                    ray_n, angle_thresh, visibility_thresh, d_theta);
+          return false;
+        }
         vis_cost.resize(ray_n);
         vis_cost.setZero();
         for(int t = 0; t < ray_n; t ++ )

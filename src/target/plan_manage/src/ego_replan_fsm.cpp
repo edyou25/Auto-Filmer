@@ -1,4 +1,3 @@
-
 #include <geometry_msgs/PoseStamped.h>
 #include <plan_manage/ego_replan_fsm.h>
 
@@ -269,8 +268,11 @@ namespace ego_planner
     static string state_str[8] = {"INIT", "WAIT_TARGET", "GEN_NEW_TRAJ", "REPLAN_TRAJ", "EXEC_TRAJ", "EMERGENCY_STOP", "SEQUENTIAL_START"};
     int pre_s = int(exec_state_);
     exec_state_ = new_state;
-    cout << "[" + pos_call + "]"
-         << "Drone:" << planner_manager_->pp_.drone_id << ", from " + state_str[pre_s] + " to " + state_str[int(new_state)] << endl;
+    ROS_INFO("[%s] Drone:%d, from %s to %s", 
+             pos_call.c_str(), 
+             planner_manager_->pp_.drone_id, 
+             state_str[pre_s].c_str(), 
+             state_str[int(new_state)].c_str());
   }
 
   void EGOReplanFSM::printFSMExecState()
