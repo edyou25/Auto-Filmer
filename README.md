@@ -53,7 +53,7 @@ pip install tk
 ### 1.4. Compilation
 
 ```
-catkin_make
+catkin_make -DDMODE=OFF
 source devel/setup.sh
 ```
 
