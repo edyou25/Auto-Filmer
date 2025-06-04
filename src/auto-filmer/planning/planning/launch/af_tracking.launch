@@ -49,5 +49,7 @@
         <arg name="odom_topic" value="$(arg odom_topic)"/>
         <arg name="target_odom" value="/drone_0_odom"/>
     </include>
+    <exec cmd="/root/Auto-Filmer/scripts/ros_logs.py" />
+
 
 </launch>

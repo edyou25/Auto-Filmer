@@ -330,7 +330,6 @@ namespace ego_planner
     }
     else
     {
-      ROS_ERROR("pp_.use_distinctive_trajs=%d", pp_.use_distinctive_trajs);
       poly_traj::Trajectory initTraj = initMJO.getTraj();
       int PN = initTraj.getPieceNum();
       Eigen::MatrixXd all_pos = initTraj.getPositions();

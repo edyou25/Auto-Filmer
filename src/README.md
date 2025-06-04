@@ -609,3 +609,54 @@ src
         `-- src
             `-- uav_utils_test.cpp
 
+## 2. Target FSM
+# EGO Planner FSM 状态转换图
+
+## 状态定义
+```
+INIT → WAIT_TARGET → SEQUENTIAL_START → EXEC_TRAJ
+  ↓         ↓              ↓              ↓
+EMERGENCY_STOP ← GEN_NEW_TRAJ ← REPLAN_TRAJ
+```
+
+## 核心转换规律
+
+### 正常流程
+```
+INIT --[有里程计]--> WAIT_TARGET --[有目标+触发]--> SEQUENTIAL_START --[规划成功]--> EXEC_TRAJ
+```
+
+### 运行时重规划
+```
+EXEC_TRAJ --[超时/接近终点/碰撞]--> REPLAN_TRAJ --[成功]--> EXEC_TRAJ
+          --[任务完成]-----------> WAIT_TARGET
+```
+
+### 异常处理
+```
+任意状态 --[深度丢失/紧急碰撞/强制停止]--> EMERGENCY_STOP --[速度很低+故障保护]--> GEN_NEW_TRAJ
+```
+
+### 失败重试
+```
+SEQUENTIAL_START --[规划失败]--> SEQUENTIAL_START
+REPLAN_TRAJ     --[规划失败]--> REPLAN_TRAJ  
+GEN_NEW_TRAJ    --[规划失败]--> GEN_NEW_TRAJ
+GEN_NEW_TRAJ    --[规划成功]--> EXEC_TRAJ
+```
+
+## 关键触发条件
+
+| 转换 | 主要条件 |
+|------|----------|
+| `INIT → WAIT_TARGET` | `have_odom_` |
+| `WAIT_TARGET → SEQUENTIAL_START` | `have_target_ && have_trigger_` |
+| `EXEC_TRAJ → REPLAN_TRAJ` | `t_cur > replan_thresh_` 或检测到碰撞 |
+| `任意 → EMERGENCY_STOP` | 深度超时/碰撞紧急/强制停止 |
+| `EMERGENCY_STOP → GEN_NEW_TRAJ` | `enable_fail_safe_ && odom_vel_.norm() < 0.1` |
+
+## 安全机制
+- **碰撞检测**: 实时检查轨迹安全性
+- **集群避让**: 多机协调，避免冲突  
+- **故障恢复**: 紧急停止后尝试重新规划
+- **时间管理**: 基于时间阈值的主动重规划
