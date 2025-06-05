@@ -189,7 +189,7 @@ void DepthRender::render_pose( double * transformation, int *host_ptr)
 
   dim3 render_block;
   dim3 render_grid;
-  render_block.x = 64;
+  render_block.x = 256;
   render_grid.x = (cloud_size + render_block.x - 1) / render_block.x;
   render<<<render_grid, render_block>>>(dev_cloud_ptr, parameter_devptr, depth_output.dev_ptr);
 
