@@ -23,22 +23,18 @@ src
 |       |   |   |-- prediction # Predict类，基于牛顿第二定律的搜索，适合做运动物体的预测
 |       |   |   |-- shot # ShotGenerator类，拍摄参数类，将gui信息转换为planner信息
 |       |   |   |-- visualization 路径，轨迹，障碍物，安全区域，多轨迹，关键点，速度矢量，视野范围
-|       |   |   `-- wr_msg
 |       |   |-- launch
 |       |   |   |-- af_tracking.launch 
-|       |   |   `-- run_in_sim.launch
 |       |   `-- src
 |       |       |-- planning_nodelet.cpp # nodelet节点，调用上述类
 |       |       `-- traj_server.cpp # 路径-期望pose信号
 |       `-- traj_opt # minco
 |-- gui 
 |-- target
-|   |-- path_searching
+|   |-- path_searching 
 |   |-- plan_env 生成occ
 |   |-- plan_manage
 |   |   |-- include 状态机
-|   |   |-- launch 
-|   |   |-- package.xml
 |   |   `-- src
 |   |       |-- ego_planner_node.cpp # target ego-planner v2 节点
 |   |       |-- ego_replan_fsm.cpp ego-planner # v2 状态机器
@@ -56,20 +52,15 @@ src
     |   |   `-- src
     |   |       `-- fake_gimbal.cpp # 云台仿真
     |   |-- local_sensing
-    |   |   |-- CMakeModules # 调用CUDA
-    |   |   |-- cfg
-    |   |   |   `-- local_sensing_node.cfg
-    |   |   |-- package.xml
-    |   |   |-- params
-    |   |   |   `-- camera.yaml
+    |   |   |-- CMakeModules # 调用CUDA工具（nvcc等）
     |   |   `-- src
     |   |       |-- AlignError.h
     |   |       |-- ceres_extensions.h
     |   |       |-- csv_convert.py
     |   |       |-- cuda_exception.cuh
-    |   |       |-- depth_render.cu
-    |   |       |-- depth_render.cuh
-    |   |       |-- device_image.cuh
+    |   |       |-- depth_render.cu # 写入cloud/param/img到device并渲染
+    |   |       |-- depth_render.cuh # render类
+    |   |       |-- device_image.cuh # 写入device的image class
     |   |       |-- pcl_render_node.cpp # ros结点
     |   |-- map_generator
     |   |   `-- src
@@ -85,3 +76,6 @@ src
 
 ## 3. Planning nodelet
 ![alt text](../assets/planning_nodelet.drawio.svg)
+
+## 4. render
+![alt text](../assets/render.drawio.svg)

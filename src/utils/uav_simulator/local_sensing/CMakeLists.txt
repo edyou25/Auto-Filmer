@@ -109,6 +109,7 @@ if(ENABLE_CUDA)
     ${catkin_LIBRARIES} 
     ${GTEST_LIBRARIES}
     ${CUDA_LIBRARIES}
+    ${OpenCV_LIBS}
     pthread
   )
   # Add CUDA include directories for the test

@@ -43,6 +43,9 @@ struct DeviceImage
           height);
     if(err != cudaSuccess)
       throw CudaException("Image: unable to allocate pitched memory.", err);
+    // std::cout << "sizeof(ElementType): " << sizeof(ElementType) << std::endl;
+    // std::cout << "Allocated pitched memory: " << width << "x" << height << " with pitch " << pitch << std::endl;
+  
 
     stride = pitch / sizeof(ElementType);
 
