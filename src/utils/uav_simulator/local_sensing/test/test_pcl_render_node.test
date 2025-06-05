@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Parameters for testing -->
+  <param name="cam_width" value="640" />
+  <param name="cam_height" value="480" />
+  <param name="cam_fx" value="320.0" />
+  <param name="cam_fy" value="320.0" />
+  <param name="cam_cx" value="320.0" />
+  <param name="cam_cy" value="240.0" />
+  
+  <!-- Run the integration test -->
+  <test test-name="test_pcl_render_node" pkg="local_sensing_node" type="test_pcl_render_node" />
+</launch>

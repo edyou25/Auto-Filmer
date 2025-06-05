@@ -35,4 +35,8 @@
   <run_depend>dynamic_reconfigure</run_depend>
   <run_depend>quadrotor_msgs</run_depend>
 
+  <!-- Test dependencies -->
+  <test_depend>gtest</test_depend>
+  <test_depend>rostest</test_depend>
+
 </package>

@@ -2,7 +2,8 @@
   "terminal.integrated.env.linux": {
     "ROS_LOG_DIR": "/root/Auto-Filmer/log",
     "ROSCONSOLE_CONFIG_FILE": "${workspaceFolder}/.vscode/rosconsole.config",
-    "ROSCONSOLE_FORMAT": "[${severity}] ${message} [${node}] "
+    "ROSCONSOLE_FORMAT": "[${severity}] ${message} [${node}] ", 
+    "DISABLE_ROS1_EOL_WARNINGS": "False"
   },
   "files.associations": {
     "deque": "cpp",

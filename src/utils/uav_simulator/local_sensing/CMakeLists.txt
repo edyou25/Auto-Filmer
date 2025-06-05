@@ -31,7 +31,11 @@ if(ENABLE_CUDA)
   find_package(Boost REQUIRED COMPONENTS system filesystem)
 
   find_package(catkin REQUIRED COMPONENTS
-      roscpp roslib cmake_modules cv_bridge image_transport pcl_ros sensor_msgs geometry_msgs nav_msgs quadrotor_msgs dynamic_reconfigure)
+      roscpp roslib cmake_modules cv_bridge image_transport pcl_ros sensor_msgs geometry_msgs nav_msgs quadrotor_msgs dynamic_reconfigure rostest)
+  
+  if(CATKIN_ENABLE_TESTING)
+    find_package(GTest REQUIRED)
+  endif()
   generate_dynamic_reconfigure_options(
     cfg/local_sensing_node.cfg
   )
@@ -91,3 +95,17 @@ else(ENABLE_CUDA)
     ${PCL_LIBRARIES}
   )
 endif(ENABLE_CUDA)
+
+# Testing
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  
+  # Unit tests for shot.hpp
+  add_rostest_gtest(test_shot_generator test/test_shot_generator.test test/test_shot_generator.cpp)
+  target_link_libraries(test_shot_generator ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
+  
+  # Integration tests
+  add_rostest_gtest(test_pcl_render_node test/test_pcl_render_node.test test/test_pcl_render_node.cpp)
+  target_link_libraries(test_pcl_render_node ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
+  
+endif()
