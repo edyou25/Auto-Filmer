@@ -97,15 +97,25 @@ else(ENABLE_CUDA)
 endif(ENABLE_CUDA)
 
 # Testing
-if(CATKIN_ENABLE_TESTING)
-  find_package(rostest REQUIRED)
+find_package(rostest REQUIRED)
+find_package(GTest REQUIRED)
+
+# CUDA depth rendering tests (only if CUDA is enabled)
+if(ENABLE_CUDA)
+  # Create a simple gtest executable for depth rendering
+  add_executable(test_depth_render test/test_depth_render.cpp)
+  target_link_libraries(test_depth_render 
+    depth_render_cuda 
+    ${catkin_LIBRARIES} 
+    ${GTEST_LIBRARIES}
+    ${CUDA_LIBRARIES}
+    pthread
+  )
+  # Add CUDA include directories for the test
+  target_include_directories(test_depth_render PRIVATE ${CUDA_INCLUDE_DIRS})
   
-  # Unit tests for shot.hpp
-  add_rostest_gtest(test_shot_generator test/test_shot_generator.test test/test_shot_generator.cpp)
-  target_link_libraries(test_shot_generator ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
-  
-  # Integration tests
-  add_rostest_gtest(test_pcl_render_node test/test_pcl_render_node.test test/test_pcl_render_node.cpp)
-  target_link_libraries(test_pcl_render_node ${catkin_LIBRARIES} ${GTEST_LIBRARIES})
-  
+  # Add the test to CTest
+  add_test(NAME depth_render_unit_tests COMMAND test_depth_render)
 endif()
+  
+

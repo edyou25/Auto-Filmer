@@ -78,5 +78,6 @@
     "valarray": "cpp",
     "variant": "cpp",
     "core": "cpp"
-  }
+  },
+  "cmake.sourceDirectory": "/root/Auto-Filmer/src/utils/uav_simulator/local_sensing"
 }

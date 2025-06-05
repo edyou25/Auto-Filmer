@@ -1,0 +1,13 @@
+<launch>
+  <test test-name="test_depth_render" pkg="local_sensing_node" type="test_depth_render">
+    <!-- Test parameters -->
+    <param name="test_timeout" value="120"/>
+    <param name="camera_width" value="640"/>
+    <param name="camera_height" value="480"/>
+    <param name="camera_fx" value="320.0"/>
+    <param name="camera_fy" value="320.0"/>
+    <param name="camera_cx" value="320.0"/>
+    <param name="camera_cy" value="240.0"/>
+    <param name="point_cloud_size" value="1000"/>
+  </test>
+</launch>
