@@ -8,10 +8,10 @@ message(STATUS "Build in Debug mode: ${DMODE}")
 
 if(DMODE)
   set(CMAKE_BUILD_TYPE Debug)
-  set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall")
+  set(CMAKE_CXX_FLAGS "-g -O0 -Wall")
 else()
   set(CMAKE_BUILD_TYPE Release)
-  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
+  set(CMAKE_CXX_FLAGS "-O3 -Wall")
 endif()
 set(CMAKE_CXX_FLAGS "-std=c++11")
 

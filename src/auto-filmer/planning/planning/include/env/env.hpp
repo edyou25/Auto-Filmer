@@ -916,7 +916,7 @@ class Env {
         tilt_z = target.z() + param.distance * sin(best_tilt);
         if(tilt_z < clearance_d_)
             tilt_z = clearance_d_;
-        des_tilt = asin((tilt_z - target.z()) / param.distance);
+        des_tilt = asin(std::min(std::max((tilt_z - target.z()) / param.distance, -1.0), 1.0));  // desired tilt angle
         des_d = param.distance * cos(des_tilt);
         des_theta = yaw + param.view_angle;  
         des_theta = des_theta > M_PI ? des_theta - 2 * M_PI : des_theta;
@@ -939,8 +939,10 @@ class Env {
         occ_index.clear();
         int ray_n = ceil((2 * angle_thresh + 2 * visibility_thresh) / d_theta);
         if (ray_n <= 0) {
-          ROS_ERROR("[Env] Invalid ray_n: %d, angle_thresh: %f, visibility_thresh: %f, d_theta: %f", 
-                    ray_n, angle_thresh, visibility_thresh, d_theta);
+          ROS_ERROR("[Env] Invalid ray_n: %d, angle_thresh: %f, visibility_thresh: %f, d_theta: %f, des_d: %f, des_tilt: %f", 
+                    ray_n, angle_thresh, visibility_thresh, d_theta, des_d, des_tilt);
+          ROS_ERROR("[Env] Invalid ray_n: %d, tilt_z: %f, target.z: %f, param.distance: %f",
+                    ray_n, tilt_z, target.z(), param.distance);
           return false;
         }
         vis_cost.resize(ray_n);
